@@ -4,7 +4,7 @@ import './Header.css'
 const Header = () => {
     return (
         <div>
-            <img src={logo} alt="" />
+            <img src={logo} alt=""  className='logo'/>
             <nav>
                 <a href="shop">Shop</a>
                 <a href="order">Order</a>

@@ -10,12 +10,14 @@ const Product = (props) => {
             <div>
                 <img src={img} alt="" />
             </div>
-            <div className='info'>
+            <div>
                 <h4 className='name'>{name}</h4>
                 <p>by : {seller}</p>
                 <p>${price}</p>
                 <p>Stock : {stock}</p>
-                <button className='main-button'> <FontAwesomeIcon icon={faShoppingCart} /> add to cart</button>
+                <button className='main-button'
+                        onClick={() => props.addProductHandler(props.product)}
+                > <FontAwesomeIcon icon={faShoppingCart} /> add to cart</button>
             </div>
             
         </div>

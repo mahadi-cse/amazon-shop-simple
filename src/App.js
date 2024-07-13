@@ -9,6 +9,7 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
+import ProductDetails from './components/ProductDetails/ProductDetails';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: '/manage',
     element: <Inventory />,
+  },
+  {
+    path: '/product/:id',
+    element: <ProductDetails/>,
   },
   {
     path: '*',

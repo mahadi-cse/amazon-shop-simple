@@ -4,12 +4,13 @@ import Header from './components/Header/Header';
 import Shop from './components/Shop/Shop';
 import Order from './components/Order/Order';
 import Inventory from './components/Inventory/Inventory';
-import NotFound from './components/Shop/NotFound';
+import NotFound from './components/NotFound/NotFound';
 import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
 import ProductDetails from './components/ProductDetails/ProductDetails';
+import Review from './components/Review/Review';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: '/manage',
     element: <Inventory />,
+  },
+  {
+    path: '/review',
+    element: <Review/>,
   },
   {
     path: '/product/:id',

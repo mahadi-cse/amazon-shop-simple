@@ -3,7 +3,7 @@ import './Cart.css'
 import { Link } from 'react-router-dom';
 const Cart = (props) => {
     const cart = props.cart;
-    const productPrice = cart.reduce((productPrice, prd) => productPrice + prd.price, 0);
+    const productPrice = cart.reduce((productPrice, prd) => productPrice + prd.price*prd.quantity, 0);
 
     let shipping = 0;
     if (productPrice > 35) {
@@ -22,7 +22,7 @@ const Cart = (props) => {
     return (
         <div>
             <h3>Order Summary</h3>
-            <p>Intems orders : ${cart.length}</p>
+            <p>Items orders : {cart.length}</p>
             <p>Product price : ${productPrice}</p>
             <p>Shipping : ${shipping}</p>
             <p>Tax + Vat : ${tax}</p>

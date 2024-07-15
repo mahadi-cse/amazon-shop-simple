@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import fakeData from '../../fakeData/products.json'
 import './Shop.css'
 import Product from '../Product/Product';
 import Cart from '../Cart/Cart';
-import { addToDb } from '../../utilities/fakedb';
+import { addToDb, getShoppingCart } from '../../utilities/fakedb';
 
 const Shop = () => {
 
@@ -14,6 +14,17 @@ const Shop = () => {
     const first10 = fakeData.slice(first, last);
     const [products, setProducts] = useState(first10);
     const [cart, setCart] = useState([]);
+
+    useEffect(()=>{
+        const saveProduct = getShoppingCart();
+        const id = Object.keys(saveProduct);
+        const previousCart = id.map(pdID => {
+            const product = fakeData.find(product => product.id === pdID);
+            product.quantity = saveProduct[pdID];
+            return product;
+        });
+        setCart(previousCart);
+    },[])
 
     const addProductHandler = (products) =>{
         const toBeAdded = products.id;

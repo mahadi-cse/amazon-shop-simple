@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { getShoppingCart, removeFromDb } from '../../utilities/fakedb';
+import { getShoppingCart, removeFromDb ,deleteShoppingCart } from '../../utilities/fakedb';
 import fakedata from '../../fakeData/products.json';
 import ReviewItems from '../ReviewItems/ReviewItems';
 import Cart from '../Cart/Cart';
+import orderPlaceImage from '../../images/giphy.gif'
 
 
 const Review = () => {
     const [cart, setCart] = useState([]);
+    const [order, setOrder] = useState(false);
+
+    const placeOrder= ()=>{
+        setCart([]);
+        deleteShoppingCart();
+        setOrder(true);
+    }
 
     useEffect(() => {
         const savecart = getShoppingCart();
@@ -25,6 +33,11 @@ const Review = () => {
         setCart(newCart);
         removeFromDb(id);
     }
+
+    let thanks;
+    if(order){
+        thanks= <img src={orderPlaceImage} alt="" />
+    }
     return (
         <div className='shop-container'>
             <div className="product-container">
@@ -33,9 +46,16 @@ const Review = () => {
                         removeProduct={removeProduct}
                         key={product.id} product={product}></ReviewItems>)
                 }
+                {
+                    thanks
+                }
             </div>
             <div className="cart">
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}>
+                    <button 
+                    onClick={placeOrder}
+                    className='main-button'>Place Order</button>
+                </Cart>
             </div>
         </div>
     );
